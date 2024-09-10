@@ -38,7 +38,7 @@ const login = async (req, res) => {
     );
 
     return res
-      .status(201)
+      .status(200)
       .json({ id: foundUser.id, name: foundUser.name, email, token });
   } catch (error) {
     return res.status(500).json({ error: "Unexpected Error" });
