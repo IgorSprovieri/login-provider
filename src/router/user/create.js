@@ -1,5 +1,4 @@
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 const { object, string } = require("yup");
 const { User } = require("../../models/User");
 
@@ -19,7 +18,7 @@ const createUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
-    const existedUser = User.where({ email: email }).findOne();
+    const existedUser = await User.where({ email: email }).findOne();
     if (existedUser) {
       return res.status(400).json({ error: "User already exists" });
     }
